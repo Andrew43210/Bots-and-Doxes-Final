@@ -38,7 +38,6 @@ music = pygame.mixer.music.load('Battle Results.mp3')
 pygame.mixer.music.play(-1)
 pop_sound = pygame.mixer.Sound("pop.wav")
 
-
 # Fonts
 font = pygame.font.Font(None, 40)
 
@@ -66,7 +65,6 @@ class Button():
 		if position[0] in range(self.rect.left, self.rect.right) and position[1] in range(self.rect.top, self.rect.bottom):
 			return True
 		return False
-        
 
 	def changeColor(self, position):
 		if position[0] in range(self.rect.left, self.rect.right) and position[1] in range(self.rect.top, self.rect.bottom):
@@ -224,8 +222,7 @@ def play():
 def options():
     while True:
         OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
-        
-        
+
         screen.fill("purple")
 
         #Options Text Information Title
@@ -241,24 +238,20 @@ def options():
         #Options Text Edit for "Back" Button
         OPTIONS_BACK = Button(image=None, pos=(225, 400), 
                             text_input="BACK", font=get_font(30), base_color="Black", hovering_color="Green")
-                            
+
         #Indicator of pressing "Back" Button
         OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
         OPTIONS_BACK.update(screen)
-        
-
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pop_sound.play()
                 pygame.quit()
                 sys.exit()
-                
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                     main_menu()
                     pop_sound.play()
-                    
 
         pygame.display.update()
 
@@ -267,7 +260,6 @@ def main_menu():
         screen.blit(BG, (0, 0))
 
         MENU_MOUSE_POS = pygame.mouse.get_pos()
-        
 
         #Title for Menu
         MENU_TEXT = get_font(30).render("Bots and Doxes", True, "#b68f40")
@@ -299,19 +291,20 @@ def main_menu():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-                
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                     play()
-                pop_sound.play()
+                    pop_sound.play()
                 if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    pop_sound.play()
                     options()
                     pop_sound.play()
                 if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    pop_sound.play()
                     pygame.quit()
                     sys.exit()
                     pop_sound.play()
-           
+                    
 
         pygame.display.update()
 

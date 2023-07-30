@@ -210,6 +210,7 @@ def check_potential_moves(player, score_count):
                     potential_moves.append((x, y))
     return potential_moves
 
+
 def check_win(player, score_count):
     for y in range(GRID_SIZE):
         for x in range(GRID_SIZE):
