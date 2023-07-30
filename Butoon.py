@@ -7,7 +7,7 @@ pygame.init()
 pygame.display.set_caption("Menu")
 
 # Constants
-GRID_SIZE = 6
+GRID_SIZE = 7
 CELL_SIZE = 75
 WINDOW_SIZE = GRID_SIZE * CELL_SIZE
 SCOREBOARD_HEIGHT = 100
