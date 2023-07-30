@@ -7,12 +7,11 @@ pygame.init()
 pygame.display.set_caption("Menu")
 
 # Constants
-GRID_SIZE = 7
+GRID_SIZE = 6
 CELL_SIZE = 75
 WINDOW_SIZE = GRID_SIZE * CELL_SIZE
 SCOREBOARD_HEIGHT = 100
 WIN_LENGTH = 5
-
 
 # Colors
 RED = (255, 0, 0)
@@ -33,6 +32,11 @@ winning_line = []
 winner = None
 player_score = 0
 ai_score = 0
+
+#Music
+music = pygame.mixer.music.load('Battle Results.mp3')
+pygame.mixer.music.play(-1)
+pop_sound = pygame.mixer.Sound("pop.wav")
 
 # Fonts
 font = pygame.font.Font(None, 40)
@@ -188,6 +192,7 @@ def play():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
+                pop_sound.play()
                 print("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n")
                 print("YOU CLICK", player_score, ai_score,  "Ha")
                 x, y = pygame.mouse.get_pos()
@@ -240,11 +245,13 @@ def options():
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                pop_sound.play()
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                     main_menu()
+                    pop_sound.play()
 
         pygame.display.update()
 
@@ -278,6 +285,7 @@ def main_menu():
         for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
             button.changeColor(MENU_MOUSE_POS)
             button.update(screen)
+            
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -286,11 +294,17 @@ def main_menu():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                     play()
+                    pop_sound.play()
                 if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    pop_sound.play()
                     options()
+                    pop_sound.play()
                 if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    pop_sound.play()
                     pygame.quit()
                     sys.exit()
+                    pop_sound.play()
+                    
 
         pygame.display.update()
 
